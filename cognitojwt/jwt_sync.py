@@ -13,8 +13,11 @@ from .exceptions import CognitoJWTException
 from .token_utils import get_unverified_claims, get_unverified_headers, check_expired, check_client_id
 
 
-@lru_cache(maxsize=1)
-def get_keys(keys_url: str) -> List[dict]:
+@lru_cache(maxsize=200)
+def get_keys(keys_url: str, kid: str) -> List[dict]:
+    # pass kid to key the cache, if a new kid is present, then its possible cognito has rotated the key
+    del kid
+    
     if keys_url.startswith("http"):
         r = requests.get(keys_url)
         keys_response = r.json()
@@ -25,10 +28,11 @@ def get_keys(keys_url: str) -> List[dict]:
 
 
 def get_public_key(token: str, region: str, userpool_id: str):
-    keys_url: str = os.environ.get('AWS_COGNITO_JWSK_PATH') or PUBLIC_KEYS_URL_TEMPLATE.format(region, userpool_id)
-    keys: list = get_keys(keys_url)
     headers = get_unverified_headers(token)
     kid = headers['kid']
+
+    keys_url: str = os.environ.get('AWS_COGNITO_JWSK_PATH') or PUBLIC_KEYS_URL_TEMPLATE.format(region, userpool_id)
+    keys: list = get_keys(keys_url, kid)
 
     key = list(filter(lambda k: k['kid'] == kid, keys))
     if not key:
