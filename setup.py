@@ -29,14 +29,14 @@ test_require = {
 
 
 setup(
-    name='cognitojwt',
+    name='cp_cognitojwt',
     version='1.3.0',
     description='Decode and verify Amazon Cognito JWT tokens',
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url='http://github.com/borisrozumnuk/cognitojwt',
-    author='Boris Rozumniuk',
-    author_email='borisrozumnuk@gmail.com',
+    url='http://github.com/chrispruitt/cognitojwt',
+    author='Chris Pruitt',
+    author_email='chris.pruitt15@gmail.com',
     license='MIT',
     platforms='Any',
     install_requires=install_requires,

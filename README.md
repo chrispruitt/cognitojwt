@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/borisrozumnuk/cognitojwt.svg?branch=master)](https://travis-ci.org/borisrozumnuk/cognitojwt)
+[![Build Status](https://travis-ci.org/chrispruitt/cognitojwt.svg?branch=master)](https://travis-ci.org/chrispruitt/cognitojwt)
 
 # Decode and verify [Amazon Cognito](https://aws.amazon.com/cognito/) JWT tokens
 
@@ -44,3 +44,5 @@ verified_claims: dict = await cognitojwt.decode_async(
 
 Note: if the application is deployed inside a private vpc without internet gateway, the application will not be able to download the JWKS file.
 In this case set the `AWS_COGNITO_JWSK_PATH` environment variable referencing the absolute or relative path of the jwks.json file.
+
+This project was originally forked from https://github.com/borisrozumnuk/cognitojwt
