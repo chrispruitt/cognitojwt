@@ -3,7 +3,7 @@
 __pycache__
 env
 /upload-dist.sh
-/cognitojwt.egg-info/
+/clp_cognitojwt.egg-info/
 /build/
 /dist/
 .env

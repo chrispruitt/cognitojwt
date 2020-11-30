@@ -21,6 +21,8 @@ def get_keys(keys_url: str, kid: str) -> List[dict]:
     if keys_url.startswith("http"):
         r = requests.get(keys_url)
         keys_response = r.json()
+        print('DEBUG...............................................')
+        print(keys_response)
     else:
         with open(keys_url, "r") as f:
             keys_response = json.loads(f.read())
